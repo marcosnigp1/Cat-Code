@@ -71,7 +71,7 @@ cat_sound6_file = open(
 cat_sound6 = audiocore.WaveFile(cat_sound6_file)
 
 # ------ GLOBAL VOLUME ---- #
-global_volume = 0.2
+global_volume = 0.7
 
 # ---- AUDIO LOGIC VARIABLES ---- #
 check_light = 0
@@ -111,11 +111,11 @@ while True:
 
         # Check during day (or room is illuminated) case.
         if voltage >= 1.40:
-            if distance > 300:
-                sound = cat_sound1
+            if distance > 120:
+                sound = cat_sound2
 
             elif distance > 40:
-                sound = cat_sound4
+                sound = cat_sound3
 
             elif distance > 1:
                 sound = cat_sound5
@@ -136,11 +136,11 @@ while True:
 
         # Check during night or no light.
         elif voltage <= 1.39:
-            if distance > 300:
-                sound = cat_sound2
+            if distance > 120:
+                sound = cat_sound1
 
             elif distance > 40:
-                sound = cat_sound3
+                sound = cat_sound4
 
             elif distance > 1:
                 sound = cat_sound6
@@ -162,4 +162,4 @@ while True:
     except RuntimeError:
         # Sometimes a reading may fail due to timeout.
         print("Retrying...")
-    time.sleep(1)
+    time.sleep(0.2)
